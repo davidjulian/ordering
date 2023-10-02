@@ -105,5 +105,5 @@ function saveSequence() {
 
     // Create a downloadable blob
     const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
-    saveAs(blob, "student_sequence.txt");
+    saveAs(blob, "student_sequence.ordseq");
 }
