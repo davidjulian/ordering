@@ -1,0 +1,38 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.instructor-tool {
+    max-width: 600px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+
+.excluded {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
+.sequence-item {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.button-group {
+    display: flex;
+    margin-right: 10px; /* Add some space between the buttons and the sequence text */
+}
+
+.sequence-text {
+    flex-grow: 1;
+}
+
+textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 10px;
+    margin-bottom: 10px;
+}

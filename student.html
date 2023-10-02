@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Tool</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</head>
+<body>
+    <div class="student-tool">
+        <h1>Student Sequence Tool</h1>
+        
+        <!-- File Upload -->
+        <input type="file" id="fileInput" onchange="loadFile(event)">
+        
+        <!-- Sequence Display -->
+        <ul id="sequenceList">
+            <!-- Items will be populated here -->
+        </ul>
+        
+        <!-- Check Button (for self-check) -->
+        <!-- <button id="checkButton" onclick="checkSequence()">Check</button> -->
+        
+        <!-- Display Score (for self-check) -->
+        <!-- <div id="scoreDisplay"></div> -->
+
+        <button onclick="saveSequence()">Save Sequence</button>
+
+    </div>
+
+    <script src="student.js"></script>
+
+</body>
+</html>
