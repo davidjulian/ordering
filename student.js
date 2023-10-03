@@ -12,9 +12,8 @@ function loadFile(event) {
 
 function displaySequence(content) {
     const data = JSON.parse(content);
-    const sequenceList = document.getElementById('sequenceList'); 
 
-    // Safety checks to ensure data structure
+    // Ensure data structure
     if (!data) {
         console.error("No data found in the provided content.");
         return;
@@ -27,15 +26,21 @@ function displaySequence(content) {
     data.startingElements = data.startingElements || [];
     data.endingElements = data.endingElements || [];
 
-    // Clear existing list
-    sequenceList.innerHTML = "";
+    const startingList = document.getElementById('startingList');
+    const sequenceList = document.getElementById('sequenceList');
+    const endingList = document.getElementById('endingList');
 
-    // First, add starting elements (if any)
+    // Clear existing lists
+    startingList.innerHTML = "";
+    sequenceList.innerHTML = "";
+    endingList.innerHTML = "";
+
+    // Populate starting elements (if any)
     data.startingElements.forEach(item => {
-        sequenceList.innerHTML += `<li class="sequence-item locked-item">${item}</li>`;
+        startingList.innerHTML += `<li class="sequence-item locked-item">${item}</li>`;
     });
 
-    // Add the main sequence items with buttons
+    // Populate the main sequence items with buttons
     decodedSequence.forEach(item => {
         sequenceList.innerHTML += `
             <li class="sequence-item">
@@ -49,11 +54,12 @@ function displaySequence(content) {
         `;
     });
 
-    // Finally, add ending elements (if any)
+    // Populate ending elements (if any)
     data.endingElements.forEach(item => {
-        sequenceList.innerHTML += `<li class="sequence-item locked-item">${item}</li>`;
+        endingList.innerHTML += `<li class="sequence-item locked-item">${item}</li>`;
     });
 }
+
 
 function deobfuscateData(obfuscatedData) {
     return decodeURIComponent(atob(obfuscatedData).split('').map(c => {
@@ -79,7 +85,6 @@ function shuffle(array) {
 
         [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
     }
-
     return array;
 }
 
