@@ -36,3 +36,20 @@ textarea {
     padding: 10px;
     margin-bottom: 10px;
 }
+
+.sortable-drag {
+    opacity: 0.6;
+}
+
+#sequenceList .sequence-item:not(.locked-item) {
+    cursor: move; /* This is the standard "drag" cursor */
+}
+
+#sequenceList .locked-item {
+    cursor: not-allowed; /* or cursor: default; if you prefer */
+}
+
+#startingList .sequence-item, #endingList .sequence-item {
+    user-select: none;
+    cursor: default;
+}
