@@ -30,6 +30,11 @@ function displaySequence(content) {
     const sequenceList = document.getElementById('sequenceList');
     const endingList = document.getElementById('endingList');
 
+    new Sortable(sequenceList, {
+        animation: 150, // Optional: adds a transition animation when sorting items
+        filter: '.locked-item' // This makes sure that your locked items are not draggable
+    });
+
     // Clear existing lists
     startingList.innerHTML = "";
     sequenceList.innerHTML = "";
