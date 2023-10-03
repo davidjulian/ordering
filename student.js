@@ -22,6 +22,7 @@ function displaySequence(content) {
 
     // Decode the randomized sequence
     const decodedSequence = JSON.parse(deobfuscateData(data.sequence));
+    shuffle(decodedSequence);
 
     data.startingElements = data.startingElements || [];
     data.endingElements = data.endingElements || [];
@@ -66,6 +67,20 @@ function excludeElement(buttonElement) {
     if (listItem) {
         listItem.classList.toggle('excluded');
     }
+}
+
+//Fisher-Yates shuffle algorithm
+function shuffle(array) {
+    let currentIndex = array.length, randomIndex;
+
+    while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    }
+
+    return array;
 }
 
 function moveUp(buttonElement) {
