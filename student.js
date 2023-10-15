@@ -1,3 +1,5 @@
+let globalNumberOfDistractors = 0;
+
 function loadFile(event) {
     const file = event.target.files[0];
     if (file) {
@@ -12,7 +14,7 @@ function loadFile(event) {
 
 function displaySequence(content) {
     const data = JSON.parse(content);
-
+    
     // Ensure data structure
     if (!data) {
         console.error("No data found in the provided content.");
@@ -40,17 +42,39 @@ function displaySequence(content) {
     sequenceList.innerHTML = "";
     endingList.innerHTML = "";
 
+    // Check for numberOfDistractors and set the display accordingly
+    const showExcludeButton = data.numberOfDistractors && data.numberOfDistractors > 0;
+    const distractorMessageElement = document.getElementById('distractorMessage');
+
+    if (showExcludeButton) {
+        const elementWord = data.numberOfDistractors === 1 ? "element" : "elements";
+        const message = `Exclude ${data.numberOfDistractors} ${elementWord}.`;
+        distractorMessageElement.textContent = message;
+    
+        // Set the global variable
+        globalNumberOfDistractors = data.numberOfDistractors;
+    } else {
+        distractorMessageElement.textContent = "";
+        globalNumberOfDistractors = 0;
+    }
+
+    // Use the Sortable library to allow reordering
+    new Sortable(sequenceList, {
+        animation: 150,
+        filter: '.locked-item' 
+    });
+
     // Populate starting elements (if any)
     data.startingElements.forEach(item => {
         startingList.innerHTML += `<li class="sequence-item locked-item">${item}</li>`;
     });
 
-    // Populate the main sequence items with buttons
+    // Populate the main sequence items with or without the "exclude" button based on showExcludeButton
     decodedSequence.forEach(item => {
         sequenceList.innerHTML += `
             <li class="sequence-item">
                 <div class="button-group">
-                    <button onclick="excludeElement(this)">X</button>
+                    ${showExcludeButton ? '<button onclick="excludeElement(this)">X</button>' : ''}
                     <button aria-label="Move up" onclick="moveUp(this)">&#9650;</button>
                     <button aria-label="Move down" onclick="moveDown(this)">&#9660;</button>
                 </div>
@@ -64,7 +88,6 @@ function displaySequence(content) {
         endingList.innerHTML += `<li class="sequence-item locked-item">${item}</li>`;
     });
 }
-
 
 function deobfuscateData(obfuscatedData) {
     return decodeURIComponent(atob(obfuscatedData).split('').map(c => {
@@ -114,15 +137,25 @@ function moveDown(buttonElement) {
 function saveSequence() {
     const sequenceList = document.getElementById('sequenceList').children;
     const items = [];
+    let excludedCount = 0;
 
     // Iterate over each list item, and collect the sequence
     for (const listItem of sequenceList) {
-        if (!listItem.classList.contains('excluded')) {
+        if (listItem.classList.contains('excluded')) {
+            excludedCount++;
+        } else {
             const textElement = listItem.querySelector('.sequence-text');
             if (textElement) {
                 items.push(textElement.textContent);
             }
         }
+    }
+
+    // Check if the correct number of elements have been excluded
+    const expectedDistractors = globalNumberOfDistractors;
+    if (expectedDistractors && excludedCount !== expectedDistractors) {
+        alert(`You have excluded ${excludedCount} element(s). The starting sequence has ${expectedDistractors} element(s) that should be excluded.`);
+        return;
     }
 
     // Convert the sequence to a string format
