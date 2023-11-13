@@ -3,6 +3,7 @@ let globalNumberOfDistractors = 0;
 function loadFile(event) {
     const file = event.target.files[0];
     if (file) {
+        globalFileName = file.name; // Store the file name
         const reader = new FileReader();
         reader.onload = function(e) {
             const content = e.target.result;
@@ -161,7 +162,10 @@ function saveSequence() {
     // Convert the sequence to a string format
     const content = JSON.stringify(items);
 
+    // Modify the filename for saving
+    let saveFileName = globalFileName.replace('_assessment', '_student');
+    
     // Create a downloadable blob
     const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
-    saveAs(blob, "student_sequence.seq");
+    saveAs(blob, saveFileName);
 }
