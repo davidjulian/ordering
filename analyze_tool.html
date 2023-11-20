@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sequencer - Analyze</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <h1>Sequencer - Analyze</h1>
+
+    <div>
+        <label for="reference-file">Reference File:</label>
+        <input type="file" id="reference-file" accept=".seq">
+    </div>
+    <BR>
+    <div>
+        <label for="sequence-files">Student Sequence Files:</label>
+        <input type="file" id="sequence-files" multiple>
+    </div>
+    
+    <BR>
+    <button onclick="processFiles()">Process</button>
+    <button onclick="saveResultsAsCSV()">Save Results as CSV</button>
+
+    <h2>Results</h2>
+    <ul id="results-list"></ul>
+
+    <script src="analyze_tool.js"></script>
+</body>
+</html>

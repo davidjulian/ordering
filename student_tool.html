@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sequencer - Student</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+</head>
+<body>
+    <div class="student-tool">
+        <h1>Sequencer - Student</h1>
+        
+        <!-- File Upload -->
+        <input type="file" id="fileInput" onchange="loadFile(event)" accept=".seq">
+        <p id="distractorMessage"></p>
+                
+        <!-- Sequence Display -->
+        <!-- The sequence elements -->
+        <ul id="startingList"></ul>
+        <ul id="sequenceList"></ul>
+        <ul id="endingList"></ul>
+        
+        <!-- Check Button (for self-check) -->
+        <!-- <button id="checkButton" onclick="checkSequence()">Check</button> -->
+        
+        <!-- Display Score (for self-check) -->
+        <!-- <div id="scoreDisplay"></div> -->
+
+        <button onclick="saveSequence()">Save Sequence</button>
+
+    </div>
+
+    <script src="student_tool.js"></script>
+
+</body>
+</html>

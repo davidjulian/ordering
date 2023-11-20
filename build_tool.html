@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sequencer - Build</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="sequencer-build">
+        <h1>Sequencer - Build</h1>
+        
+        <textarea id="startingElementsInput" placeholder="(Optional) Enter fixed starting elements here..." onchange="handleStartingElementsInput(this.value)"></textarea>
+        <textarea id="sequenceInput" placeholder="Enter the sequence here..." onchange="handleSequenceInput(this.value)"></textarea>
+        <textarea id="endingElementsInput" placeholder="(Optional) Enter fixed ending elements here..." onchange="handleEndingElementsInput(this.value)"></textarea>
+        <textarea id="distractorsInput" placeholder="(Optional) Enter distractor elements here..." onchange="handleDistractorInput(this.value)"></textarea>
+
+        <button onclick="openFile()">Open File</button>
+        <button onclick="saveFiles()">Save Files</button>
+    </div>
+    
+    <!-- Load libraries... -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.js"></script>
+    <script src="build_tool.js"></script>
+</body>
+</html>
