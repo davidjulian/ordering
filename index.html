@@ -35,7 +35,7 @@
     <button id="instructorBtn" class="button">Instructor</button>
 
     <div class="student">
-        <a href="student_tool.html" class="button">Go to Student Tool</a>
+        <!-- Removed the "Go to Student Tool" button as it's now redundant -->
     </div>
 
     <div class="instructor">
@@ -45,13 +45,11 @@
 
     <script>
         document.getElementById('studentBtn').addEventListener('click', function() {
-            document.querySelector('.student').classList.add('show');
-            document.querySelector('.instructor').classList.remove('show');
+            window.location.href = 'student_tool.html'; // Direct navigation to student tool
         });
 
         document.getElementById('instructorBtn').addEventListener('click', function() {
             document.querySelector('.instructor').classList.add('show');
-            document.querySelector('.student').classList.remove('show');
         });
     </script>
 
