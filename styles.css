@@ -1,6 +1,7 @@
 body {
     font-family: 'Roboto', sans-serif;
     padding: 20px;
+    margin-bottom: 80px; /* Space for the copyright footer */
 }
 
 .instructor-tool {
@@ -23,7 +24,7 @@ body {
 
 .button-group {
     display: flex;
-    margin-right: 10px; /* Add some space between the buttons and the sequence text */
+    margin-right: 10px; /* Adds space between the buttons and the sequence text */
 }
 
 .sequence-text {
@@ -42,14 +43,25 @@ textarea {
 }
 
 #sequenceList .sequence-item:not(.locked-item) {
-    cursor: move; /* This is the standard "drag" cursor */
+    cursor: move; /* Standard "drag" cursor */
 }
 
 #sequenceList .locked-item {
-    cursor: not-allowed; /* or cursor: default; if you prefer */
+    cursor: not-allowed;
 }
 
 #startingList .sequence-item, #endingList .sequence-item {
     user-select: none;
     cursor: default;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 5px;
+    background-color: #f1f1f1;
+    font-size: 0.8em;
 }
